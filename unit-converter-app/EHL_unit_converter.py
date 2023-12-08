@@ -1,4 +1,5 @@
 from tkinter import *
+from tkinter import font
 import tkinter.messagebox as msgbox
 from capacity_converter import Capacity as CapCon
 
