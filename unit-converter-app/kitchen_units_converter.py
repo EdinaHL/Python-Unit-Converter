@@ -1,11 +1,9 @@
 from decimal import Decimal
 
 
-class KitchenUnits:
+class Kitchen_Units:
 
-    kitchen_units_list = ["ml (millilitres)", "cup UK", "cup US",
-                          "tsp UK (teaspoon)", "tbsp UK (tablespoon)",
-                          "tsp US (teaspoon)", "tbsp US (tablespoon)"]
+    kitchen_units_list = ["ml (millilitres)", "cup UK", "cup US", "tsp (teaspoon)", "tbsp (tablespoon)"]
 
     # Base of conversion: ml
 
@@ -25,7 +23,7 @@ class KitchenUnits:
     def user_input_value(self, value):
         try:
             self.user_input = Decimal(value)
-        except ArithmeticError:
+        except:
             return "Invalid Number"
 
     def return_result(self):
@@ -33,37 +31,19 @@ class KitchenUnits:
 
     def from_source_to_ml(self):
         match self.from_unit:
-            case "ml (millilitres)":
-                self.source_exchanged_to_ml = self.user_input
-            case "cup UK":
-                self.source_exchanged_to_ml = self.user_input * Decimal("284.1")
-            case "cup US":
-                self.source_exchanged_to_ml = self.user_input * Decimal("240")
-            case "tsp UK (teaspoon)":
-                self.source_exchanged_to_ml = self.user_input * Decimal("5.919")
-            case "tbsp UK (tablespoon)":
-                self.source_exchanged_to_ml = self.user_input * Decimal("17.758")
-            case "tsp US (teaspoon)":
-                self.source_exchanged_to_ml = self.user_input * Decimal("4.929")
-            case "tbsp US (tablespoon)":
-                self.source_exchanged_to_ml = self.user_input * Decimal("14.787")
+            case "g (grams)": self.source_exchanged_to_ml = self.user_input
+            case "cup UK": self.source_exchanged_to_ml = self.user_input * Decimal("284")
+            case "cup US": self.source_exchanged_to_ml = self.user_input * Decimal("237")
+            case "tsp (teaspoon)": self.source_exchanged_to_ml = self.user_input * Decimal("5")
+            case "tbsp (tablespoon)": self.source_exchanged_to_ml = self.user_input * Decimal("15")
 
     def from_ml_to_target_unit(self):
         match self.to_unit:
-            case "ml (millilitres)":
-                self.ml_exchanged_to_target = self.source_exchanged_to_ml
-            case "cup UK":
-                self.ml_exchanged_to_target = self.source_exchanged_to_ml / Decimal("284.1")
-            case "cup US":
-                self.ml_exchanged_to_target = self.source_exchanged_to_ml / Decimal("240")
-            case "tsp UK (teaspoon)":
-                self.ml_exchanged_to_target = self.source_exchanged_to_ml / Decimal("5.919")
-            case "tbsp UK (tablespoon)":
-                self.ml_exchanged_to_target = self.source_exchanged_to_ml / Decimal("17.758")
-            case "tsp US (teaspoon)":
-                self.ml_exchanged_to_target = self.source_exchanged_to_ml / Decimal("4.929")
-            case "tbsp US (tablespoon)":
-                self.ml_exchanged_to_target = self.source_exchanged_to_ml / Decimal("14.787")
+            case "g (grams)": self.ml_exchanged_to_target = self.source_exchanged_to_ml
+            case "cup UK": self.ml_exchanged_to_target = self.source_exchanged_to_ml / Decimal("284")
+            case "cup US": self.ml_exchanged_to_target = self.source_exchanged_to_ml / Decimal("237")
+            case "tsp (teaspoon)": self.ml_exchanged_to_target = self.source_exchanged_to_ml / Decimal("5")
+            case "tbsp (tablespoon)": self.ml_exchanged_to_target = self.source_exchanged_to_ml / Decimal("15")
 
     def calculation(self, value):
         self.user_input_value(value)
